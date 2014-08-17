@@ -1,0 +1,3 @@
+[submodule "raspi-adafruit-ruby"]
+	path = raspi-adafruit-ruby
+	url = git@github.com:ahmedjaved2011/raspi-adafruit-ruby.git
