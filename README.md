@@ -28,6 +28,6 @@ Requires graphviz for creating state machine diagram.
 To create the state machine diagram execute following in the root directory
 
 ```
-rake -f state-diagram/Rakefile state_machine:draw FILE=./lib/lcd_control_panel.rb CLASS=LcdControlPanel
+rake -f state-diagram/Rakefile state_machine:draw FILE=./lib/lcd_control_panel.rb CLASS=LcdControlPanel TARGET=state-diagram
 ```
 
