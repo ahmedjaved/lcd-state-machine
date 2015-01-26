@@ -1,4 +1,8 @@
 *.log
-*.env
-*.html
+*.lock
+*.env*
 coverage
+*.iml
+*.txt
+*.idea
+rubocop-report.html
