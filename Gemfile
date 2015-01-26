@@ -8,6 +8,7 @@ gem 'dotenv'
 group :development do
   gem 'ruby-graphviz'
   gem 'rubocop', require: false
+  gem 'coveralls', require: false
 end
 
 group :test do
