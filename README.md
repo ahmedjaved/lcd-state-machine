@@ -1,24 +1,30 @@
 # LCD Control Panel for Raspberry Pi
 
+[![Build Status](https://travis-ci.org/ahmedjaved/lcd-control-panel-statemachine.svg?branch=master)](https://travis-ci.org/ahmedjaved/lcd-control-panel-statemachine)
+[![Coverage Status](https://coveralls.io/repos/ahmedjaved/lcd-control-panel-statemachine/badge.svg)](https://coveralls.io/r/ahmedjaved/lcd-control-panel-statemachine)
+
+
 ### Requirements
 * Ruby 2.1.2
 * Setup LCD based on https://github.com/ahmedjaved2011/raspi-adafruit-ruby
 
 ### How To Run
 
-Execute 
+Execute
 ```
-rbenv sudo ruby lib/lcd.rb
+rbenv sudo ruby lib/lcd_buttons.rb
 ```
 
 ### .env file
 .env is used to specify settings for email. Following environment variables are used
 
 ```
-LCD_EMAIL_ADDRESS
-LCD_EMAIL_PORT
-LCD_EMAIL_USER_NAME
-LCD_EMAIL_PASSWORD
+SMTP_ADDRESS
+SMTP_PORT
+SMTP_USER_NAME
+SMTP_PASSWORD
+FROM_EMAIL_ADDRESS
+
 ```
 Note: the password is in base 64
 
@@ -28,6 +34,6 @@ Requires graphviz for creating state machine diagram.
 To create the state machine diagram execute following in the root directory
 
 ```
-rake -f state-diagram/Rakefile state_machine:draw FILE=./lib/lcd_control_panel.rb CLASS=LcdControlPanel TARGET=state-diagram
+bundle exec rake -f state-diagram/Rakefile state_machine:draw FILE=./lib/lcd_state_machine.rb CLASS=RaspberryPiControlPanel::LcdStateMachine TARGET=state-diagram
 ```
 
