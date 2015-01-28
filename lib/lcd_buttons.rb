@@ -6,6 +6,7 @@ require_relative 'dotenv_loader'
 require_relative 'logger'
 require_relative 'state_machine_actions'
 require_relative 'display_strings'
+require_relative 'system_commands'
 
 # Raspberry PI Control Panel Module using Adafruit LCD to control different
 module RaspberryPiControlPanel
@@ -50,7 +51,7 @@ module RaspberryPiControlPanel
     lcd = Adafruit::LCD::Char16x2.new
     lcd_display = LcdDisplay.new(lcd)
     system_commands = SystemCommands.new
-    display_strings = DisplayString.new
+    display_strings = DisplayStringsMap.read_from_yaml_file
     state_machine_actions = StateMachineActions.new(Email.new, lcd_display, system_commands, display_strings)
     lcd_state_machine = LcdStateMachine.new(state_machine_actions, Logging.logger['LcdStateMachine'])
     lcd_buttons = LcdButtons.new(lcd, Logging.logger['LcdButtons'])

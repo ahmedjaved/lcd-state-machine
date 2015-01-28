@@ -1,4 +1,7 @@
 ---
 update_pi_question: update pi?
-updating_pi: updating!
+update_pi_progress: updating!
 update_pi_email_subject: Raspi Update Run
+update_pi_complete: done!
+terminate_question: terminate?
+terminate: "-----ByeBye-----\n+++See U l8r!+++"
