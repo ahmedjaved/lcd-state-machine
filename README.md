@@ -1,4 +1,4 @@
-#lcd-state-machine [![Build Status](https://travis-ci.org/ahmedjaved/lcd-state-machine.svg?branch=master)](https://travis-ci.org/ahmedjaved/lcd-state-machine)
+#lcd-state-machine [![Build Status](https://travis-ci.org/ahmedjaved/lcd-state-machine.svg?branch=master)](https://travis-ci.org/ahmedjaved/lcd-state-machine) [![Coverage Status](https://coveralls.io/repos/ahmedjaved/lcd-state-machine/badge.svg)](https://coveralls.io/r/ahmedjaved/lcd-state-machine)
 
 ## Description
 A [state machine](https://github.com/pluginaweek/state_machine) backed implementation to control [Raspberry PI](http://www.raspberrypi.org/) using [Adafruit LCD](http://www.adafruit.com/product/1110).
