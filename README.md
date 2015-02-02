@@ -12,7 +12,7 @@ The circle with double border is the final state after which the process for the
 ![](https://raw.githubusercontent.com/ahmedjaved/lcd-state-machine/master/state-diagram/RaspberryPiControlPanel::LcdStateMachine_state.png)
 
 ## Setup
-* Raspberry Pi with Ruby 2.1.2 setup using [rbenv](https://github.com/sstephenson/rbenv), [rbenv-build](https://github.com/sstephenson/ruby-build) and [rbenv-sudo](https://github.com/dcarley/rbenv-sudo)
+* Raspberry Pi with Ruby 2.1.5 setup using [rbenv](https://github.com/sstephenson/rbenv), [rbenv-build](https://github.com/sstephenson/ruby-build) and [rbenv-sudo](https://github.com/dcarley/rbenv-sudo)
 * Setup Adafruit LCD as outlined [here](https://github.com/ahmedjaved/raspi-adafruit-ruby/tree/0a55879b47972efa3d2af5d208417659a441a62d)
 * ```bundle install```
 * ```bundle exec rake setup_git_submodule```
