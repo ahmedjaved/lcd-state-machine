@@ -1,39 +1,45 @@
-# LCD Control Panel for Raspberry Pi
+#lcd-state-machine [![Build Status](https://travis-ci.org/ahmedjaved/lcd-state-machine.svg?branch=master)](https://travis-ci.org/ahmedjaved/lcd-state-machine) [![Coverage Status](https://coveralls.io/repos/ahmedjaved/lcd-state-machine/badge.svg)](https://coveralls.io/r/ahmedjaved/lcd-state-machine)
 
-[![Build Status](https://travis-ci.org/ahmedjaved/lcd-control-panel-statemachine.svg?branch=master)](https://travis-ci.org/ahmedjaved/lcd-control-panel-statemachine)
-[![Coverage Status](https://coveralls.io/repos/ahmedjaved/lcd-control-panel-statemachine/badge.svg)](https://coveralls.io/r/ahmedjaved/lcd-control-panel-statemachine)
+## Description
+A [state machine](https://github.com/pluginaweek/state_machine) backed implementation to control [Raspberry PI](http://www.raspberrypi.org/) using [Adafruit LCD](http://www.adafruit.com/product/1110).
 
+When the buttons are pressed on the LCD events are triggered on state machine. At the moment up button is not used.
 
-### Requirements
-* Ruby 2.1.2
-* Setup LCD based on https://github.com/ahmedjaved2011/raspi-adafruit-ruby
+The start state is dot in the diagram below and depending on the button pressed LCD can be in one of the states in circle.
 
-### How To Run
+The circle with double border is the final state after which the process for the state machine exits.
 
-Execute
-```
-rbenv sudo ruby lib/lcd_buttons.rb
-```
+![](https://raw.githubusercontent.com/ahmedjaved/lcd-state-machine/master/state-diagram/RaspberryPiControlPanel::LcdStateMachine_state.png)
+
+## Setup
+* Raspberry Pi with Ruby 2.1.2 setup using [rbenv](https://github.com/sstephenson/rbenv), [rbenv-build](https://github.com/sstephenson/ruby-build) and [rbenv-sudo](https://github.com/dcarley/rbenv-sudo)
+* Setup Adafruit LCD as outlined [here](https://github.com/ahmedjaved/raspi-adafruit-ruby/tree/0a55879b47972efa3d2af5d208417659a441a62d)
+* ```bundle install```
+* ```bundle exec rake setup_git_submodule```
+
+## Usage
+
+To start LCD using state machine run
+```rbenv sudo ruby lib/lcd_buttons.rb```
 
 ### .env file
 .env is used to specify settings for email. Following environment variables are used
 
-```
-SMTP_ADDRESS
+```SMTP_ADDRESS
 SMTP_PORT
 SMTP_USER_NAME
 SMTP_PASSWORD
 FROM_EMAIL_ADDRESS
-
 ```
 Note: the password is in base 64
 
+## Development
+### tests
+The [unit](https://github.com/ahmedjaved/lcd-control-panel-statemachine/tree/master/spec/unit) and [integration](https://github.com/ahmedjaved/lcd-control-panel-statemachine/tree/master/spec/integration) tests are implemented using [rspec](http://rspec.info/)
 ### state machine diagram
-Requires graphviz for creating state machine diagram.
+Requires [graphviz](http://www.graphviz.org/) for creating state machine diagram.
 
 To create the state machine diagram execute following in the root directory
 
-```
-bundle exec rake -f state-diagram/Rakefile state_machine:draw FILE=./lib/lcd_state_machine.rb CLASS=RaspberryPiControlPanel::LcdStateMachine TARGET=state-diagram
-```
+```bundle exec rake draw_state_machine_diagram```
 

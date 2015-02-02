@@ -1,5 +1,9 @@
+require 'tasks/state_machine'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
+require 'fileutils'
+
+task default: %w(rubocop spec:unit)
 
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.patterns = %w(lib/**/*.rb spec/**/*.rb Rakefile)
@@ -24,4 +28,18 @@ end
 desc 'runs unit and then integration tests'
 task spec: %w(spec:unit spec:integration)
 
-task default: %w(rubocop spec:unit)
+task draw_state_machine_diagram: [:setup_options_for_state_machine_diagram, :'state_machine:draw'] do
+  FileUtils.move "#{ENV['CLASS']}_state.png", 'state_machine_diagram.png'
+end
+
+task :setup_options_for_state_machine_diagram do
+  ENV['FILE'] = './lib/lcd_state_machine.rb'
+  ENV['CLASS'] = 'RaspberryPiControlPanel::LcdStateMachine'
+end
+
+task :setup_git_submodule do
+  sh <<-RUBY
+  git submodule init
+  git submodule update
+  RUBY
+end
