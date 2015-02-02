@@ -2,8 +2,12 @@ require 'tasks/state_machine'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 require 'fileutils'
+require 'coveralls/rake/task'
+require 'rake/clean'
 
-task default: %w(rubocop spec:unit)
+CLEAN.include(FileList['coverage'])
+
+task default: %w(clean rubocop spec:unit)
 
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.patterns = %w(lib/**/*.rb spec/**/*.rb Rakefile)
@@ -43,3 +47,6 @@ task :setup_git_submodule do
   git submodule update
   RUBY
 end
+
+Coveralls::RakeTask.new
+task ci: [:default, :'coveralls:push']
