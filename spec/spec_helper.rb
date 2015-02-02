@@ -8,8 +8,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 ]
 
 SimpleCov.start do
-  add_filter '/spec/'
-  add_filter '/raspi-adafruit-ruby/'
+  add_filter 'spec'
+  add_filter 'raspi-adafruit-ruby'
 end
 
 require 'dotenv_loader'
