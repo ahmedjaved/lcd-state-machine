@@ -2,7 +2,6 @@ require 'tasks/state_machine'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 require 'fileutils'
-require 'coveralls/rake/task'
 require 'rake/clean'
 
 CLEAN.include(FileList['coverage'])
@@ -47,6 +46,3 @@ task :setup_git_submodule do
   git submodule update
   RUBY
 end
-
-Coveralls::RakeTask.new
-task ci: [:default, :'coveralls:push']
