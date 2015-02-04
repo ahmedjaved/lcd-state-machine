@@ -25,7 +25,8 @@ To start LCD using state machine run
 ### .env file
 .env is used to specify settings for email. Following environment variables are used
 
-```SMTP_ADDRESS
+```
+SMTP_ADDRESS
 SMTP_PORT
 SMTP_USER_NAME
 SMTP_PASSWORD
