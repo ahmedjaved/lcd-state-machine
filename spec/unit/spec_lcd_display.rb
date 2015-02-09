@@ -1,10 +1,11 @@
 require 'spec_helper'
+require 'lcd_display'
 
 module RaspberryPiControlPanel
   describe LcdDisplay do
     describe 'using mock lcd and email client' do
       let(:lcd) do
-        instance_double('Adafruit::LCD::Char16x2').tap do |lcd|
+        instance_double(Adafruit::LCD::Char16x2).tap do |lcd|
           %i(
             clear
             message

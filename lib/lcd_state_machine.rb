@@ -1,5 +1,6 @@
 require 'state_machine'
 require 'forwardable'
+require_relative 'state_machine_actions'
 
 module RaspberryPiControlPanel
   # State machine based on LCD buttons
@@ -10,10 +11,10 @@ module RaspberryPiControlPanel
     def_delegators :@state_machine_actions, :display_update_pi_question, :turn_display_off,
                    :display_update_status, :display_terminate_question, :display_terminating_and_terminate
 
-    def initialize(state_machine_actions, logger)
+    def initialize(lcd)
       super() # NOTE: This *must* be called, otherwise states won't get initialized
-      @logger = logger
-      @state_machine_actions = state_machine_actions
+      @logger =  Logging.logger['LcdStateMachine']
+      @state_machine_actions =  StateMachineActions.new(lcd)
     end
 
     def log_transition(transition)
@@ -56,6 +57,10 @@ module RaspberryPiControlPanel
       after_transition :terminate => :terminating, :do => :display_terminating_and_terminate
       # after_transition :update_pi => :terminate, :do => :terminate
       # rubocop:enable Style/HashSyntax
+
+      states.each do |state|
+        self.state(state.name, value: state.name.to_sym)
+      end
     end
   end
 end

@@ -1,11 +1,16 @@
+require_relative 'email'
+require_relative 'lcd_display'
+require_relative 'system_commands'
+require_relative 'display_strings'
+
 module RaspberryPiControlPanel
   # stores all of the actions performed due to an option selected on the lcd display
   class StateMachineActions
-    def initialize(email_client, lcd_display, system_commands, display_strings)
-      @email_client = email_client
-      @lcd_display = lcd_display
-      @system_commands = system_commands
-      @display_strings = display_strings
+    def initialize(lcd)
+      @email_client = Email.new
+      @lcd_display = LcdDisplay.new(lcd)
+      @system_commands = SystemCommands.new
+      @display_strings =  DisplayStringsMap.instance
     end
 
     def display_update_pi_question(_)

@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'dotenv_loader'
 
 module RaspberryPiControlPanel
   describe DotenvLoader do
