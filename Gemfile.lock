@@ -21,7 +21,7 @@ GEM
     fuubar (2.0.0)
       rspec (~> 3.0)
       ruby-progressbar (~> 1.4)
-    guard (2.12.0)
+    guard (2.12.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
       lumberjack (~> 1.0)
@@ -35,8 +35,13 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
+    guard-rubocop (1.2.0)
+      guard (~> 2.0)
+      rubocop (~> 0.20)
     hitimes (1.2.2)
     i2c (0.2.22)
+    libnotify (0.9.1)
+      ffi (>= 1.0.11)
     listen (2.8.5)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -53,7 +58,7 @@ GEM
     multi_json (1.10.1)
     nenv (0.2.0)
     netrc (0.10.2)
-    notiffany (0.0.4)
+    notiffany (0.0.5)
       nenv (~> 0.1)
       shellany (~> 0.0)
     parser (2.2.0.2)
@@ -119,13 +124,15 @@ DEPENDENCIES
   dotenv
   fuubar
   guard-rspec
+  guard-rubocop
   i2c (= 0.2.22)
+  libnotify
   logging
   mail
   pi_piper
   rake
   rb-readline
-  rspec (>= 3.0)
+  rspec (~> 3.2.0)
   rubocop
   ruby-graphviz
   simplecov

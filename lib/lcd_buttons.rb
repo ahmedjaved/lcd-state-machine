@@ -1,23 +1,20 @@
 require_relative '../raspi-adafruit-ruby/lib/lcd/char16x2'
 require_relative 'lcd_state_machine'
-require_relative 'dotenv_loader'
 require_relative 'logger'
+require_relative 'lcd'
 
-# Raspberry PI Control Panel Module using Adafruit LCD to control different
+# Raspberry PI Control Panel Module using Adafruit LCD
 module RaspberryPiControlPanel
   # Delegates functionality to other classes based on button presses
   class LcdButtons
+    include Singleton
     BUTTONS = %w(select down left right)
 
-    def initialize(lcd)
-      @lcd = lcd
-      @logger = Logging.logger['LcdButtons']
-      @lcd_state_machine = LcdStateMachine.new lcd
-    end
+    public
 
     def monitor_buttons
       @logger.debug 'Monitoring buttons'
-      until (@lcd_state_machine.state == :terminating)
+      until @lcd_state_machine.state == :terminating
         button_pressed = which_button_was_pressed?
         if button_pressed
           @logger.debug "#{button_pressed} button pressed"
@@ -25,6 +22,14 @@ module RaspberryPiControlPanel
         end
         sleep 0.1
       end
+    end
+
+    protected
+
+    def initialize
+      @lcd_state_machine = LcdStateMachine.instance
+      @lcd = Lcd.instance
+      @logger = Logging.logger['LcdButtons']
     end
 
     def which_button_was_pressed?
@@ -48,14 +53,5 @@ module RaspberryPiControlPanel
         super
       end
     end
-  end
-
-  if __FILE__ == $PROGRAM_NAME
-    Logger.configure_logging
-    lcd_logger = Logging.logger['main']
-    lcd_logger.debug '********** Starting Up **********'
-    DotenvLoader.new('.env')
-    LcdButtons.new(Adafruit::LCD::Char16x2.new).monitor_buttons
-    lcd_logger.debug '********** Shutting Down **********'
   end
 end

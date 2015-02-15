@@ -1,4 +1,5 @@
 ---
+startup: "-----Hello!-----\n+++I'm Alive!+++"
 update_pi_question: update pi?
 update_pi_progress: updating!
 update_pi_email_subject: Raspi Update Run

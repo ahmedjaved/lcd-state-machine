@@ -8,7 +8,8 @@ module RaspberryPiControlPanel
 
     before(:example) do
       allow(Logging).to receive(:logger).and_return(logger)
-      state_machine_actions
+      allow(Lcd).to receive(:instance).and_return(nil)
+      allow(StateMachineActions).to receive(:instance).and_return(state_machine_actions)
     end
 
     let(:logger) do
@@ -20,6 +21,7 @@ module RaspberryPiControlPanel
     let(:state_machine_actions) do
       instance_double(StateMachineActions).tap do |state_machine_actions|
         %i(
+          display_startup_message
           display_update_pi_question
           turn_display_off
           display_update_status
@@ -34,19 +36,16 @@ module RaspberryPiControlPanel
 
     let(:to_states) { subject.state_transitions.map(&:to_name).uniq }
 
-    let(:subject_in_sleep_state) do
-      # state_machine_actions
-      LcdStateMachine.new double('lcd')
-    end
+    let(:subject_in_sleep_state) { LcdStateMachine.send :new }
 
     let(:subject_in_update_pi_state) do
       allow(logger).to receive(:debug)
-      subject_in_sleep_state.clone.tap(&:right_button_pressed)
+      subject_in_sleep_state.tap(&:right_button_pressed)
     end
 
     let(:subject_in_terminate_state) do
       allow(logger).to receive(:debug)
-      subject_in_sleep_state.clone.tap(&:down_button_pressed)
+      subject_in_sleep_state.tap(&:down_button_pressed)
     end
 
     context 'when in sleep state' do

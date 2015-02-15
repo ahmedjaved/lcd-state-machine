@@ -7,7 +7,7 @@ module RaspberryPiControlPanel
   describe Email do
     context "#{env_file} file is present" do
       before(:all) do
-        Dotenv.load env_file
+        Dotenv.load! env_file
         fail "#{env_file} is needed to test this spec" unless File.exist?(env_file)
       end
 

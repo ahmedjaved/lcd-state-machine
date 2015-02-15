@@ -3,10 +3,12 @@ require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
 require 'fileutils'
 require 'rake/clean'
+require 'shellwords'
 
 CLEAN.include(FileList['coverage'])
 
 task default: %w(clean rubocop spec:unit)
+task unit_display_result_from_top: %w(clean rubocop spec:unit_display_result_from_top)
 
 RuboCop::RakeTask.new(:rubocop) do |task|
   task.patterns = %w(lib/**/*.rb spec/**/*.rb Rakefile)
@@ -19,17 +21,27 @@ end
 namespace :spec do
   desc 'runs unit tests'
   RSpec::Core::RakeTask.new(:unit) do |t|
-    t.pattern = 'spec/unit/spec_*.rb'
+    t.pattern = 'spec/unit/*_spec.rb'
+  end
+
+  desc 'runs unit tests and shows output using less'
+  task :unit_display_result_from_top do
+    zsh 'bundle exec rspec --pattern spec/unit/*_spec.rb |& tee run.log; less run.log ; rm run.log'
   end
 
   desc 'runs integration tests'
   RSpec::Core::RakeTask.new(:integration) do |t|
-    t.pattern = 'spec/integration/spec_*.rb'
+    t.pattern = 'spec/integration/*_spec.rb'
+  end
+
+  desc 'runs all tests'
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.pattern = 'spec/**/*_spec.rb'
   end
 end
 
 desc 'runs unit and then integration tests'
-task spec: %w(spec:unit spec:integration)
+task spec: %w(spec:spec)
 
 task draw_state_machine_diagram: [:setup_options_for_state_machine_diagram, :'state_machine:draw'] do
   FileUtils.move "#{ENV['CLASS']}_state.png", 'state_machine_diagram.png'
@@ -41,8 +53,16 @@ task :setup_options_for_state_machine_diagram do
 end
 
 task :setup_git_submodule do
-  sh <<-RUBY
+  sh <<-EOF
   git submodule init
   git submodule update
-  RUBY
+  EOF
+end
+
+def zsh(command)
+  escaped_command = Shellwords.escape(command)
+  system <<-EOF
+    eval "$(rbenv init -)"
+    zsh -c #{escaped_command}
+  EOF
 end
