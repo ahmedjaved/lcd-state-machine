@@ -9,7 +9,7 @@ The start state is dot in the diagram below and depending on the button pressed 
 
 The circle with double border is the final state after which the process for the state machine exits.
 
-![](https://raw.githubusercontent.com/ahmedjaved/lcd-state-machine/master/state-diagram/RaspberryPiControlPanel::LcdStateMachine_state.png)
+![](https://raw.githubusercontent.com/ahmedjaved/lcd-state-machine/master/state_machine_diagram.png)
 
 ## Setup
 * Raspberry Pi with Ruby 2.1.5 setup using [rbenv](https://github.com/sstephenson/rbenv), [rbenv-build](https://github.com/sstephenson/ruby-build) and [rbenv-sudo](https://github.com/dcarley/rbenv-sudo)
