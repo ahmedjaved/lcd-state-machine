@@ -20,7 +20,7 @@ The circle with double border is the final state after which the process for the
 ## Usage
 
 To start LCD using state machine run
-```rbenv sudo ruby lib/lcd_buttons.rb```
+```rbenv sudo ruby lib/lcd.rb```
 
 ### .env file
 .env is used to specify settings for email. Following environment variables are used
