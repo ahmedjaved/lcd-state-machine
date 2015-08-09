@@ -10,7 +10,6 @@ module RaspberryPiControlPanel
 
       standard_out_appender = Logging.appenders.stdout logger_args
 
-      # log_filename = Time.now.strftime '%Y%m%d'
       file_appender = Logging.appenders.file "log-#{Time.now.strftime '%Y%m%d'}.log", logger_args
 
       Logging.logger.root.add_appenders standard_out_appender, file_appender

@@ -19,10 +19,6 @@ module RaspberryPiControlPanel
         @lcd.backlight Adafruit::LCD::Char16x2::GREEN
       when :blue
         @lcd.backlight Adafruit::LCD::Char16x2::BLUE
-      when :off
-        @lcd.backlight Adafruit::LCD::Char16x2::OFF
-      when :on
-        @lcd.backlight Adafruit::LCD::Char16x2::ON
       end
     end
 
@@ -30,7 +26,7 @@ module RaspberryPiControlPanel
 
     def turn_display_off
       @lcd.clear
-      change_lcd_background_color_to :off
+      @lcd.backlight Adafruit::LCD::Char16x2::OFF
       self
     end
 

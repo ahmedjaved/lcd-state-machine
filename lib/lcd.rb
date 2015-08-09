@@ -12,14 +12,16 @@ module RaspberryPiControlPanel
     def initialize
       super Adafruit::LCD::Char16x2.new
     end
+
+    def self.run
+      Dotenv.load!
+      Logger.configure_logging
+      lcd_logger = Logging.logger['main']
+      lcd_logger.debug '********** Starting Up **********'
+      LcdButtons.instance.monitor_buttons
+      lcd_logger.debug '********** Shutting Down **********'
+    end
   end
 
-  if __FILE__ == $PROGRAM_NAME
-    Dotenv.load!
-    Logger.configure_logging
-    lcd_logger = Logging.logger['main']
-    lcd_logger.debug '********** Starting Up **********'
-    LcdButtons.instance.monitor_buttons
-    lcd_logger.debug '********** Shutting Down **********'
-  end
+  Lcd.run if __FILE__ == $PROGRAM_NAME
 end

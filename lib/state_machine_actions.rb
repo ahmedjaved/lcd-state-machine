@@ -17,6 +17,20 @@ module RaspberryPiControlPanel
       @display_strings =  DisplayStringsMap.instance
     end
 
+    def install_updates
+      if system "#{@system_commands.install_software_updates}"
+        email_body = @display_strings.software_updates_installation_successful
+        if system "#{@system_commands.install_kernel_updates}"
+          email_body << @display_strings.kernel_updates_installation_successful
+        else
+          email_body << @display_strings.kernel_updates_installation_failed
+        end
+      else
+        email_body = @display_strings.software_updates_installation_failed
+      end
+      email_body
+    end
+
     public
 
     def display_startup_message
@@ -35,8 +49,7 @@ module RaspberryPiControlPanel
 
     def display_update_status(_)
       @lcd_display.with_red_background.display @display_strings.update_pi_progress
-      email_body = @system_commands.update_system
-      @email_client.deliver ENV['FROM_EMAIL_ADDRESS'], @display_strings.update_pi_email_subject, email_body
+      @email_client.deliver ENV['FROM_EMAIL_ADDRESS'], @display_strings.update_pi_email_subject, install_updates
       @lcd_display.with_green_background.display_and_block_for_seven_seconds @display_strings.update_pi_complete
     end
 

@@ -51,8 +51,12 @@ module RaspberryPiControlPanel
     it 'displays updating pi, updates pi and displays done' do
       expect(lcd_display).to receive(:with_red_background).ordered
       expect(lcd_display).to receive(:display).with(display_strings.update_pi_progress).ordered
-      expect(system_commands).to receive(:update_system).ordered
-      expect(email_client).to receive(:deliver).with(anything, display_strings.update_pi_email_subject, nil).ordered
+      expect(system_commands).to receive(:install_software_updates).ordered
+      expect(system_commands).to receive(:install_kernel_updates).ordered
+      allow(subject).to receive(:system).and_return(true, true)
+      email_body = display_strings.software_updates_installation_successful + \
+                   display_strings.kernel_updates_installation_successful
+      expect(email_client).to receive(:deliver).with(anything, display_strings.update_pi_email_subject, email_body).ordered
       expect(lcd_display).to receive(:with_green_background).ordered
       expect(lcd_display).to receive(:display_and_block_for_seven_seconds).with(display_strings.update_pi_complete).ordered
       subject.display_update_status nil

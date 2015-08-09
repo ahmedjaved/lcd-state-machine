@@ -1,19 +1,27 @@
+require 'spec_helper'
 require 'lcd'
 
 module RaspberryPiControlPanel
   describe Lcd do
-    before(:example) { allow(Adafruit::LCD::Char16x2).to receive(:new).and_return(instance_double(Adafruit::LCD::Char16x2)) }
-
-    subject { Lcd.instance }
-
     it 'uses Adafruit::LCD::Char16x2' do
       expect(Adafruit::LCD::Char16x2).to receive(:new)
-      subject
+      Lcd.instance
     end
 
     context 'when run as main' do
+      let(:logger) do
+        double(Logging::Logger).tap do |logger|
+          expect(logger).to receive('[]').with('main').and_return(logger)
+          expect(logger).to receive(:debug).exactly(2).times
+        end
+      end
+
       it 'initializes correctly' do
-        `ruby lib/lcd.rb`
+        expect(Dotenv).to receive(:load!)
+        expect(Logger).to receive(:configure_logging)
+        expect(Logging).to receive(:logger).and_return(logger)
+        expect(LcdButtons).to receive(:instance).and_return(double(LcdButtons).as_null_object)
+        expect { Lcd.run }.to_not raise_error
       end
     end
   end

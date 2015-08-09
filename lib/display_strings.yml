@@ -6,3 +6,7 @@ update_pi_email_subject: Raspi Update Run
 update_pi_complete: done!
 terminate_question: terminate?
 terminate: "-----ByeBye-----\n+++See U l8r!+++"
+software_updates_installation_successful: "Software Updates Installed Successfully.\n"
+kernel_updates_installation_successful: Kernel Updates Installation Successful.
+kernel_updates_installation_failed: Kernel Updates Installation Failed.
+software_updates_installation_failed: "Software Updates Installation Failed.\nNo Kernel Updates Installed"
