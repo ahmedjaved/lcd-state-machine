@@ -8,8 +8,7 @@ gem 'dotenv'
 group :development do
   gem 'ruby-graphviz'
   gem 'rubocop', require: false
-  gem 'coveralls', require: false
-
+  gem 'codecov', :require => false, :group => :test
   gem 'guard-rspec', require: false
   gem 'guard-rubocop'
   gem 'libnotify'

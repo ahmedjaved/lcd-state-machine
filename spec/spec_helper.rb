@@ -1,16 +1,15 @@
 require 'rspec/core'
 require 'simplecov'
-require 'coveralls'
-
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
 
 SimpleCov.start do
   add_filter '/spec/'
   add_filter '/raspi-adafruit-ruby/'
   add_filter '/vendor/'
+end
+
+if ENV['CI'] == 'true'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
 
 require 'lcd_buttons'
