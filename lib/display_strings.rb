@@ -3,6 +3,7 @@ require 'ostruct'
 require 'delegate'
 
 module RaspberryPiControlPanel
+  # Strings that are displayed on the lcd panel
   class DisplayStringsMap < SimpleDelegator
     include Singleton
 
