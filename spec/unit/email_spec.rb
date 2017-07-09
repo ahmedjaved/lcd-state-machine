@@ -11,6 +11,7 @@ module RaspberryPiControlPanel
         allow(Mail).to receive(:defaults) do |&block|
           mail_double.instance_eval(&block)
         end
+        ENV.clear
       end
 
       after { subject }
@@ -57,6 +58,7 @@ module RaspberryPiControlPanel
         end.and_return(mail_double)
         %i(from to body subject).each { |method_name| allow(mail_double).to receive(method_name) }
         allow(mail_double).to receive(:deliver!)
+        ENV.clear
       end
 
       it 'uses from email address to send the email address from' do
