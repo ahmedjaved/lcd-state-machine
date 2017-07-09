@@ -19,12 +19,12 @@ module RaspberryPiControlPanel
         expect(mail_double).to receive(:delivery_method).with(:smtp, any_args)
       end
 
-      it 'uses smtp address from environment variable string SMTP_ADDRESS' do
+      it 'uses smtp address from environment variable SMTP_ADDRESS' do
         ENV['SMTP_ADDRESS'] = 'smtp.address'
         expect(mail_double).to receive(:delivery_method).with(:smtp, hash_including(address: ENV['SMTP_ADDRESS']))
       end
 
-      it 'uses smtp port from environment variable string SMTP_PORT' do
+      it 'uses smtp port from environment variable SMTP_PORT' do
         ENV['SMTP_PORT'] = '1234'
         expect(mail_double).to receive(:delivery_method).with(:smtp, hash_including(port: ENV['SMTP_PORT']))
       end
