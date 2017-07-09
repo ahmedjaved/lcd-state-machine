@@ -45,3 +45,13 @@ To create the state machine diagram execute following in the root directory
 
 ```bundle exec rake draw_state_machine_diagram```
 
+## Resources
+
+Learning Ruby? Here are some links for some of the Ruby Standard Library
+classes used in this project
+
+[Singleton](https://dalibornasevic.com/posts/9-ruby-singleton-pattern)
+
+[SimpleDelegator](https://hashrocket.com/blog/posts/using-simpledelegator-for-your-decorators)
+
+[Forwardable](http://vaidehijoshi.github.io/blog/2015/03/31/delegating-all-of-the-things-with-ruby-forwardable/)
