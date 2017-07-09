@@ -1,5 +1,4 @@
 require_relative '../raspi-adafruit-ruby/lib/lcd/char16x2'
-require_relative 'email'
 
 module RaspberryPiControlPanel
   # Delegate for LCD State Machine to control the Adafruit LCD
