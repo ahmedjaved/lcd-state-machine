@@ -37,6 +37,7 @@ namespace :spec do
   desc 'runs all tests'
   RSpec::Core::RakeTask.new(:spec) do |t|
     t.pattern = 'spec/**/*_spec.rb'
+    t.rspec_opts = '--format html --out reports/rspec_results.html'
   end
 end
 
