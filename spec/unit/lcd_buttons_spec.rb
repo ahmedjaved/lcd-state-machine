@@ -46,7 +46,7 @@ module RaspberryPiControlPanel
     end
 
     it 'raises error when a method is not found' do
-      expect { subject.bogus }.to raise_error
+      expect { subject.bogus }.to raise_error(NoMethodError)
     end
 
     context '#which_button_was_pressed?' do
