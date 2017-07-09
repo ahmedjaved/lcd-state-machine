@@ -3,7 +3,6 @@ require 'ostruct'
 require 'delegate'
 
 module RaspberryPiControlPanel
-  # stores all of the actions performed due to an option selected on the lcd display
   class DisplayStringsMap < SimpleDelegator
     include Singleton
 
