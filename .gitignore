@@ -1,7 +1,9 @@
 *.log
 *.env*
 coverage
+reports
 *.iml
 *.txt
 *.idea
 rubocop-report.html
+.DS_Store
