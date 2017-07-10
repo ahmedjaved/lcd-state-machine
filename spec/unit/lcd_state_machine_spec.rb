@@ -68,10 +68,10 @@ module RaspberryPiControlPanel
     subject(:lcd_state_machine_in_sleep_state) { LcdStateMachine.send :new }
 
     context 'when in update pi state' do
-      subject(:lcd_state_machine_in_update_pi_state) {
+      subject(:lcd_state_machine_in_update_pi_state) do
         allow(logger).to receive(:debug)
         lcd_state_machine_in_sleep_state.tap(&:right_button_pressed)
-      }
+      end
 
       it 'can transition to sleep or download updates states' do
         expect(to_states).to match_array %i(sleep download_updates)
@@ -99,10 +99,10 @@ module RaspberryPiControlPanel
     let(:available_events) { subject.state_transitions.map(&:event) }
 
     context 'when in terminate state' do
-      subject(:lcd_state_machine_in_terminate_state) {
+      subject(:lcd_state_machine_in_terminate_state) do
         allow(logger).to receive(:debug)
         lcd_state_machine_in_sleep_state.tap(&:down_button_pressed)
-      }
+      end
 
       it 'can transition to sleep state' do
         expect(to_states).to match_array %i(sleep terminating)
