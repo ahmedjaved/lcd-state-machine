@@ -7,7 +7,7 @@ gem 'dotenv', '2.0.1'
 
 group :development do
   gem 'ruby-graphviz', '1.2.1'
-  gem 'rubocop', '0.30.1', require: false
+  gem 'rubocop', '0.49.0', require: false
   gem 'codecov', '0.1.0', :require => false, :group => :test
 
   gem 'guard-rspec', '4.5.0', require: false

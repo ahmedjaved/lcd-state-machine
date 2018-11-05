@@ -33,9 +33,11 @@ SMTP_USER_NAME
 SMTP_PASSWORD
 FROM_EMAIL_ADDRESS
 ```
+
 Note: the password is in base 64
 
 ## Development
+
 ### tests
 The [unit](https://github.com/ahmedjaved/lcd-control-panel-statemachine/tree/master/spec/unit) and [integration](https://github.com/ahmedjaved/lcd-control-panel-statemachine/tree/master/spec/integration) tests are implemented using [rspec](http://rspec.info/)
 ### state machine diagram
