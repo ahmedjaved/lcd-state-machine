@@ -7,3 +7,5 @@ reports
 *.idea
 rubocop-report.html
 .DS_Store
+**/bundle*/**
+
