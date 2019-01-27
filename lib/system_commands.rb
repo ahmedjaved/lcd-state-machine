@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RaspberryPiControlPanel
   # stores all of the actions performed using external programs
   class SystemCommands

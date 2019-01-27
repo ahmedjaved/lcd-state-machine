@@ -1,11 +1,16 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'email'
 
 module RaspberryPiControlPanel
+  # rubocop:disable Metrics/BlockLength
   describe Email do
+    # rubocop:enable Metrics/BlockLength
     let(:mail_double) { double }
-
+    # rubocop:disable Metrics/BlockLength
     describe 'initialize' do
+      # rubocop:enable Metrics/BlockLength
       before do
         allow(Base64).to receive(:decode64)
         allow(Mail).to receive(:defaults) do |&block|
@@ -50,13 +55,15 @@ module RaspberryPiControlPanel
       end
     end
 
+    # rubocop:disable Metrics/BlockLength
     describe 'deliver' do
+      # rubocop:enable Metrics/BlockLength
       before do
         allow(Mail).to receive(:defaults)
         allow(Mail).to receive(:new) do |&block|
           mail_double.instance_eval(&block)
         end.and_return(mail_double)
-        %i(from to body subject).each { |method_name| allow(mail_double).to receive(method_name) }
+        %i[from to body subject].each { |method_name| allow(mail_double).to receive(method_name) }
         allow(mail_double).to receive(:deliver!)
         ENV.clear
       end

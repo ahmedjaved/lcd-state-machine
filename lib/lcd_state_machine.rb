@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'state_machine'
 require 'forwardable'
 require_relative 'state_machine_actions'
@@ -56,7 +58,7 @@ module RaspberryPiControlPanel
       after_transition :download_updates => :sleep, :terminate => :sleep, :do => :turn_display_off
 
       after_transition :update_pi => :sleep, :do => :turn_display_off
-      after_transition :update_pi => :download_updates, :do => [:display_update_status, :fire_download_complete_event]
+      after_transition :update_pi => :download_updates, :do => %i[display_update_status fire_download_complete_event]
 
       after_transition :terminate => :terminating, :do => :display_terminating_and_terminate
       # after_transition :update_pi => :terminate, :do => :terminate

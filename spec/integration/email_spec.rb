@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'email'
 require 'dotenv'
@@ -8,7 +10,7 @@ module RaspberryPiControlPanel
     context "given #{env_file} file is present" do
       before(:all) do
         Dotenv.load! env_file
-        fail "#{env_file} is needed to test this spec" unless File.exist?(env_file)
+        raise "#{env_file} is needed to test this spec" unless File.exist?(env_file)
       end
 
       it 'when Email is initilaized then no exception is raised' do

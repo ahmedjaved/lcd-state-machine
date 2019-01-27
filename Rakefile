@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tasks/state_machine'
 require 'rubocop/rake_task'
 require 'rspec/core/rake_task'
@@ -7,14 +9,14 @@ require 'shellwords'
 
 CLEAN.include(FileList['coverage'])
 
-task default: %w(clean rubocop spec:unit)
-task unit_display_result_from_top: %w(clean rubocop spec:unit_display_result_from_top)
+task default: %w[clean rubocop spec:unit]
+task unit_display_result_from_top: %w[clean rubocop spec:unit_display_result_from_top]
 
 RuboCop::RakeTask.new(:rubocop) do |task|
-  task.patterns = %w(lib/**/*.rb spec/**/*.rb Rakefile)
-  task.formatters = %w(simple html)
+  task.patterns = %w[lib/**/*.rb spec/**/*.rb Rakefile]
+  task.formatters = %w[simple html]
   task.fail_on_error = true
-  task.options = %w(-o rubocop-report.html)
+  task.options = %w[-o rubocop-report.html]
 end
 
 # http://stackoverflow.com/questions/10029250/organizing-rspec-2-tests-into-unit-and-integration-categories-in-rails
@@ -42,9 +44,9 @@ namespace :spec do
 end
 
 desc 'runs unit and then integration tests'
-task spec: %w(spec:spec)
+task spec: %w[spec:spec]
 
-task draw_state_machine_diagram: [:setup_options_for_state_machine_diagram, :'state_machine:draw'] do
+task draw_state_machine_diagram: %i[setup_options_for_state_machine_diagram state_machine:draw] do
   FileUtils.move "#{ENV['CLASS']}_state.png", 'state_machine_diagram.png'
 end
 
@@ -54,16 +56,16 @@ task :setup_options_for_state_machine_diagram do
 end
 
 task :setup_git_submodule do
-  sh <<-EOF
+  sh <<-CMD
   git submodule init
   git submodule update
-  EOF
+  CMD
 end
 
 def zsh(command)
   escaped_command = Shellwords.escape(command)
-  system <<-EOF
+  system <<-CMD
     eval "$(rbenv init -)"
     zsh -c #{escaped_command}
-  EOF
+  CMD
 end

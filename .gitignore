@@ -9,3 +9,5 @@ rubocop-report.html
 .DS_Store
 **/bundle*/**
 .ruby-version
+*.swp
+

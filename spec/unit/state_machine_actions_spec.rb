@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'state_machine_actions'
 
 module RaspberryPiControlPanel
+  # rubocop:disable Metrics/BlockLength
   describe StateMachineActions do
+    # rubocop:enable Metrics/BlockLength
     before(:example) do
       allow(Lcd).to receive(:instance).and_return(nil)
       allow(LcdDisplay).to receive(:new).and_return(lcd_display)
@@ -14,14 +18,14 @@ module RaspberryPiControlPanel
 
     let(:lcd_display) do
       instance_double(LcdDisplay).tap do |lcd_display|
-        %i(
+        %i[
           with_red_background
           with_green_background
           with_blue_background
           turn_display_off
           display
           display_and_block_for_seven_seconds
-        ).each { |method| allow(lcd_display).to receive(method).and_return(lcd_display) }
+        ].each { |method| allow(lcd_display).to receive(method).and_return(lcd_display) }
       end
     end
 

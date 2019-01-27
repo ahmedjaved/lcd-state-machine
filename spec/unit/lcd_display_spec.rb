@@ -1,15 +1,19 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'lcd_display'
 
 module RaspberryPiControlPanel
+  # rubocop:disable Metrics/BlockLength
   describe LcdDisplay do
     describe 'using mock lcd and email client' do
+      # rubocop:enable Metrics/BlockLength
       let(:lcd) { instance_double(Adafruit::LCD::Char16x2) }
 
       subject { LcdDisplay.new lcd }
 
       let(:subject_has_initialized) do
-        %i(clear backlight).each do |method|
+        %i[clear backlight].each do |method|
           allow(lcd).to receive(method)
         end
         subject
