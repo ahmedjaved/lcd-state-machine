@@ -10,7 +10,7 @@ gem 'state_machine', '1.2.0', require: 'state_machine/core'
 group :development do
   gem 'rubocop', '0.63.1', require: false
   gem 'ruby-graphviz', '1.2.1'
-  # gem 'codecov', '0.1.0', :require => false, :group => :test
+  gem 'codecov', '0.1.14', :require => false, :group => :test
 
   # gem 'guard-rspec', '4.5.0', require: false
   # gem 'guard-rubocop', '1.2.0'
@@ -24,7 +24,7 @@ group :test do
   gem 'rspec', '3.6.0'
 
   # for code coverage
-  # gem 'simplecov', '0.10.0', require: false
+  gem 'simplecov', '0.16.1', require: false
 
   # for raspi-adafruit-ruby
   gem 'i2c', '0.2.22'
