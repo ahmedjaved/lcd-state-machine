@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 
 gem 'dotenv', '2.0.1'
 gem 'logging', '2.0.0'
-gem 'mail', '2.6.3'
+gem 'mail', '2.7.1'
 gem 'state_machine', '1.2.0', require: 'state_machine/core'
 
 group :development do
