@@ -1,0 +1,25 @@
+# Ruby
+# Package your Ruby project.
+# Add steps that install rails, analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/ruby
+
+trigger:
+- master
+
+pool:
+  vmImage: 'Ubuntu-16.04'
+
+steps:
+- task: UseRubyVersion@0
+  inputs:
+    versionSpec: '2.5.1' 
+    addToPath: true
+
+- script: |
+    gem install bundler -v 1.16.6
+    bundle install --retry=3 --jobs=4
+    bundle exec rake setup_git_submodule
+  displayName: 'Install specific bundler version + dependencies'
+
+- script: bundle exec rake
+  displayName: 'Unit test + generate coverage'
