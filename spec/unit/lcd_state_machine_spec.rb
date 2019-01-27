@@ -1,10 +1,14 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'lcd_state_machine'
 
 module RaspberryPiControlPanel
+  # rubocop:disable Metrics/BlockLength
   describe LcdStateMachine do
-    all_buttons = %w(right left select down).map! { |element| "#{element}_button_pressed".to_sym }
-    all_buttons_except_right_and_down = all_buttons - %i(right_button_pressed down_button_pressed)
+    # rubocop:enable Metrics/BlockLength
+    all_buttons = %w[right left select down].map! { |element| "#{element}_button_pressed".to_sym }
+    all_buttons_except_right_and_down = all_buttons - %i[right_button_pressed down_button_pressed]
 
     before(:example) do
       allow(Logging).to receive(:logger).and_return(logger)
@@ -20,21 +24,21 @@ module RaspberryPiControlPanel
 
     let(:state_machine_actions) do
       instance_double(StateMachineActions).tap do |state_machine_actions|
-        %i(
+        %i[
           display_startup_message
           display_update_pi_question
           turn_display_off
           display_update_status
           display_terminate_question
           display_terminating_and_terminate
-        ).each { |method| allow(state_machine_actions).to receive(method) }
+        ].each { |method| allow(state_machine_actions).to receive(method) }
         allow(StateMachineActions).to receive(:new).and_return(state_machine_actions)
       end
     end
 
     context 'when in sleep state' do
       it 'can transition to update pi or terminate state' do
-        expect(to_states).to match_array %i(update_pi terminate)
+        expect(to_states).to match_array %i[update_pi terminate]
       end
 
       all_buttons_except_right_and_down.each do |button|
@@ -74,11 +78,11 @@ module RaspberryPiControlPanel
       end
 
       it 'can transition to sleep or download updates states' do
-        expect(to_states).to match_array %i(sleep download_updates)
+        expect(to_states).to match_array %i[sleep download_updates]
       end
 
       it 'can transition using left or select buttons only' do
-        expect(available_events).to match_array [:select_button_pressed, :left_button_pressed]
+        expect(available_events).to match_array %i[select_button_pressed left_button_pressed]
       end
 
       it 'display is turned off after transitioning to sleep state due to left button press' do
@@ -105,7 +109,7 @@ module RaspberryPiControlPanel
       end
 
       it 'can transition to sleep state' do
-        expect(to_states).to match_array %i(sleep terminating)
+        expect(to_states).to match_array %i[sleep terminating]
       end
 
       it 'display is turned off after transitioning to sleep state due to left button press' do

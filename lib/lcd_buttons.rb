@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../raspi-adafruit-ruby/lib/lcd/char16x2'
 require_relative 'lcd_state_machine'
 require_relative 'logger'
@@ -8,9 +10,7 @@ module RaspberryPiControlPanel
   # Delegates functionality to other classes based on button presses
   class LcdButtons
     include Singleton
-    BUTTONS = %w(select down left right)
-
-    public
+    BUTTONS = %w[select down left right].freeze
 
     def monitor_buttons
       @logger.debug 'Monitoring buttons'
@@ -45,13 +45,17 @@ module RaspberryPiControlPanel
         self.class.class_eval do
           constant_name = method_name.to_s.sub('_button_pressed?', '').upcase
           define_method(method_name) do
-            @lcd.button_pressed Adafruit::LCD::Char16x2.const_get("#{constant_name}")
+            @lcd.button_pressed Adafruit::LCD::Char16x2.const_get(constant_name.to_s)
           end
         end
         send(method_name)
       else
         super
       end
+    end
+
+    def respond_to_missing?(method_name, include_private = false)
+      method_name.to_s.match(/(#{BUTTONS.join('|')})_button_pressed\?$/) || super
     end
   end
 end

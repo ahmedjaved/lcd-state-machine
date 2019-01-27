@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../raspi-adafruit-ruby/lib/lcd/char16x2'
 require 'dotenv'
 require_relative 'logger'
@@ -23,5 +25,5 @@ module RaspberryPiControlPanel
     end
   end
 
-  Lcd.run if __FILE__ == $PROGRAM_NAME
+  Lcd.run if $PROGRAM_NAME == __FILE__
 end

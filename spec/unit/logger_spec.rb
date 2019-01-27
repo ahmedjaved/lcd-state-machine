@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'logger'
 
 module RaspberryPiControlPanel
+  # rubocop:disable Metrics/BlockLength
   describe Logger do
+    # rubocop:enable Metrics/BlockLength
     Logger.configure_logging
 
     let :appender_names do

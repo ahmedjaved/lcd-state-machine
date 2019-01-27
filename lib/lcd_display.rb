@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../raspi-adafruit-ruby/lib/lcd/char16x2'
 
 module RaspberryPiControlPanel
