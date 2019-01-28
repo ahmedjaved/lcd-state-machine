@@ -10,7 +10,7 @@ gem 'state_machine', '1.2.0', require: 'state_machine/core'
 group :development do
   gem 'rubocop', '0.63.1', require: false
   gem 'ruby-graphviz', '1.2.1'
-  gem 'codecov', '0.1.14', :require => false, :group => :test
+  gem 'coveralls', require: false
 
   # gem 'guard-rspec', '4.5.0', require: false
   # gem 'guard-rubocop', '1.2.0'

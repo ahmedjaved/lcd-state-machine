@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 require 'rspec/core'
-require 'simplecov'
-
-SimpleCov.start do
-  add_filter '/spec/'
-  add_filter '/raspi-adafruit-ruby/'
-  add_filter '/vendor/'
-end
 
 if ENV['CI'] == 'true'
-  require 'codecov'
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  require 'coveralls'
+  Coveralls.wear!
+else
+  require 'simplecov'
+
+  SimpleCov.start do
+    add_filter '/spec/'
+    add_filter '/raspi-adafruit-ruby/'
+    add_filter '/vendor/'
+  end
 end
 
 require 'lcd_buttons'
