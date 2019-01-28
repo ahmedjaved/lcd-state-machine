@@ -65,7 +65,7 @@ module RaspberryPiControlPanel
       # rubocop:enable Style/HashSyntax
 
       states.each do |state|
-        self.state(state.name, value: state.name.to_sym)
+        state(state.name, value: state.name.to_sym)
       end
     end
   end

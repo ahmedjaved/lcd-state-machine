@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 
 gem 'dotenv', '2.0.1'
@@ -8,12 +6,12 @@ gem 'mail', '2.7.1'
 gem 'state_machine', '1.2.0', require: 'state_machine/core'
 
 group :development do
-  gem 'rubocop', '0.63.1', require: false
+  gem 'codecov', '0.1.10', require: false, group: :test
+  gem 'rubocop', '0.49.1', require: false
   gem 'ruby-graphviz', '1.2.1'
-  gem 'codecov', '0.1.14', :require => false, :group => :test
 
-  # gem 'guard-rspec', '4.5.0', require: false
-  # gem 'guard-rubocop', '1.2.0'
+  gem 'guard-rspec', '4.5.0', require: false
+  gem 'guard-rubocop', '1.2.0'
   gem 'libnotify', '0.9.1'
   gem 'rb-readline', '0.5.2'
 end
@@ -24,7 +22,7 @@ group :test do
   gem 'rspec', '3.6.0'
 
   # for code coverage
-  gem 'simplecov', '0.16.1', require: false
+  gem 'simplecov', '0.9.1', require: false
 
   # for raspi-adafruit-ruby
   gem 'i2c', '0.2.22'

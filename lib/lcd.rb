@@ -24,6 +24,5 @@ module RaspberryPiControlPanel
       lcd_logger.debug '********** Shutting Down **********'
     end
   end
-
   Lcd.run if $PROGRAM_NAME == __FILE__
 end
