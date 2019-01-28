@@ -1,18 +1,27 @@
 # frozen_string_literal: true
 
-require 'rspec/core'
+require 'coveralls'
+Coveralls.wear!
 
-if ENV['CI'] == 'true'
-  require 'coveralls'
-  Coveralls.wear!
-else
-  require 'simplecov'
+if ENV['CI']
+  module Coveralls
+    def should_run?
+      true
+    end
 
-  SimpleCov.start do
-    add_filter '/spec/'
-    add_filter '/raspi-adafruit-ruby/'
-    add_filter '/vendor/'
+    def will_run?
+      true
+    end
   end
+end
+
+require 'rspec/core'
+require 'simplecov'
+
+SimpleCov.start do
+  add_filter '/spec/'
+  add_filter '/raspi-adafruit-ruby/'
+  add_filter '/vendor/'
 end
 
 require 'lcd_buttons'
