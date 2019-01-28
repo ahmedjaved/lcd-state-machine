@@ -14,6 +14,8 @@ if ENV['CI']
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
 
+puts 'token found' if ENV['CODECOV_TOKEN']
+
 require 'lcd_buttons'
 module RaspberryPiControlPanel
   module LcdButtonsSpecHelper
