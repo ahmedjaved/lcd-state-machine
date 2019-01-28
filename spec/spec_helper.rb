@@ -9,9 +9,10 @@ SimpleCov.start do
   add_filter '/vendor/'
 end
 
-if ENV['CI'] == 'true'
+if ENV['CI']
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  puts 'ENV CI FOUND'
 end
 
 require 'lcd_buttons'
