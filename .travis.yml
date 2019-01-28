@@ -1,4 +1,7 @@
 language: ruby
 rvm:
   - 2.5.1
-script: bundle exec rake
+script: |
+        bundle exec rake
+        bash <(curl -s https://codecov.io/bash) -s ./coverage
+
