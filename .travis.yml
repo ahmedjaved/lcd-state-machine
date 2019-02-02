@@ -11,6 +11,4 @@ rvm:
 
 script:
   - bundle exec rake
-
-script:  
   - sonar-scanner -X
