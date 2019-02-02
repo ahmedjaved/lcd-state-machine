@@ -2,17 +2,19 @@
 
 require 'rspec/core'
 require 'simplecov'
+require 'codacy-coverage'
+
+if ENV['CI'] == 'true'
+  SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+                                                                   SimpleCov::Formatter::HTMLFormatter,
+                                                                   Codacy::Formatter
+                                                                 ])
+end
 
 SimpleCov.start do
   add_filter '/spec/'
   add_filter '/raspi-adafruit-ruby/'
   add_filter '/vendor/'
-end
-
-if ENV['CI'] == 'true'
-  require 'codacy-coverage'
-
-  Codacy::Reporter.start
 end
 
 require 'lcd_buttons'
