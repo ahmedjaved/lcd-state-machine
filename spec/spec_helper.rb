@@ -10,8 +10,9 @@ SimpleCov.start do
 end
 
 if ENV['CI'] == 'true'
-  require 'codecov'
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  require 'codacy-coverage'
+
+  Codacy::Reporter.start
 end
 
 require 'lcd_buttons'
