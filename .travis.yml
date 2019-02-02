@@ -1,4 +1,16 @@
 language: ruby
+
+dist: trusty
+
+addons:
+  sonarcloud:
+    organization: ahmedjaved-github
+
 rvm:
   - 2.5.1
-script: bundle exec rake
+
+script:
+  - bundle exec rake
+
+script:  
+  - sonar-scanner -X
