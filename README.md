@@ -1,4 +1,4 @@
-lcd-state-machine [![Build Status](https://travis-ci.org/ahmedjaved/lcd-state-machine.svg?branch=master)](https://travis-ci.org/ahmedjaved/lcd-state-machine) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lcd-state-machine&metric=alert_status)](https://sonarcloud.io/dashboard?id=lcd-state-machine)
+lcd-state-machine [![Build Status](https://travis-ci.org/ahmedjaved/lcd-state-machine.svg?branch=master)](https://travis-ci.org/ahmedjaved/lcd-state-machine) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lcd-state-machine&metric=alert_status)](https://sonarcloud.io/dashboard?id=lcd-state-machine) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=lcd-state-machine&metric=coverage)](https://sonarcloud.io/dashboard?id=lcd-state-machine)
 ==================
 
 ## Description
