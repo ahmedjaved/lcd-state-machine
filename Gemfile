@@ -10,8 +10,8 @@ gem 'state_machine', '1.2.0', require: 'state_machine/core'
 group :development do
   gem 'rubocop', '0.63.1', require: false
   gem 'ruby-graphviz', '1.2.1'
-  gem 'codacy-coverage', :require => false
-
+  gem 'codacy-coverage', '2.1.0', :require => false
+  gem 'logger', '1.3.0'
   # gem 'guard-rspec', '4.5.0', require: false
   # gem 'guard-rubocop', '1.2.0'
   gem 'libnotify', '0.9.1'
